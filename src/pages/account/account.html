@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar color="sitamet">
+    <ion-title>Account</ion-title>
+  </ion-navbar>
+
+  <ion-toolbar no-border color="sitamet">
+    <ion-segment [(ngModel)]="movements" no-padding color="light">
+      <ion-segment-button value="all">
+        All
+      </ion-segment-button>
+      <ion-segment-button value="spent">
+        Spent
+      </ion-segment-button>
+      <ion-segment-button value="deposited">
+        Deposited
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-card class="card-available-balance">
+    <ion-card-header class="available-balance">5.895,89€</ion-card-header>
+    <ion-card-content class="card-available-balance-description">Available balance</ion-card-content>
+  </ion-card>
+
+  <div [ngSwitch]="movements">
+    <ion-list *ngSwitchCase="'all'">
+      <ion-item>
+        <h2>Ruby</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Oscar</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Zoey</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Otto</h2>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'spent'">
+      <ion-item>
+        <h2>Luna</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Milo</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Bandit</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Nala</h2>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'deposited'">
+      <ion-item>
+        <h2>Daffy</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Huey</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Dewey</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Louie</h2>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>

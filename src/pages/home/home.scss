@@ -1,3 +1,35 @@
 page-home {
+    ion-header {
+        text-align: center;
+        padding-top: 2em;
+    }
 
+    ion-slides {
+        padding: 0 2em;
+
+        ion-slide {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 2em;
+        }
+    }
+
+    .logo {
+        height: 12em;
+    }
+}
+
+.icon-finger-print {
+    text-align: center;
+    display: block;
+    font-size: 4em;
+}
+
+.list-access {
+    margin: 1em 2em;
+}
+
+.item-access {
+    color: #888888;
+    font-size: .9em;
+    text-align: center;
 }

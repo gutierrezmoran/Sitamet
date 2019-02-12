@@ -1,14 +1,30 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-</ion-content>
+<ion-header no-border>
+    <img class="logo" src="../../assets/imgs/logo.png">
+  </ion-header>
+  
+  <ion-content>
+    <ion-slides>
+  
+      <ion-slide>
+        <h2>Controla tus gastos personales</h2>
+      </ion-slide>
+  
+      <ion-slide>
+        <h2>Todo en la palma de tu mano</h2>
+      </ion-slide>
+  
+      <ion-slide>
+        <h2>Con total seguridad de acceso mediante huella</h2>
+      </ion-slide>
+  
+    </ion-slides>
+  
+  </ion-content>
+  
+  <ion-footer no-border>
+    <ion-list class="list-access">
+      <ion-item class="item-access" (click)="readFingerprint()">
+        <ion-icon class="icon-finger-print" name="finger-print"></ion-icon>
+      </ion-item>
+    </ion-list>
+  </ion-footer>

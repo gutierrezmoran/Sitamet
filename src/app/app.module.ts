@@ -6,11 +6,17 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { NativePageTransitions } from '@ionic-native/native-page-transitions';
+import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
+import { UserPage } from '../pages/user/user';
+import { AccountPage } from '../pages/account/account';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    UserPage,
+    AccountPage
   ],
   imports: [
     BrowserModule,
@@ -19,12 +25,16 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    UserPage,
+    AccountPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    NativePageTransitions,
+    FingerprintAIO
   ]
 })
 export class AppModule {}

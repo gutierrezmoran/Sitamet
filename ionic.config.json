@@ -1,5 +1,7 @@
 {
   "name": "Sitamet",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

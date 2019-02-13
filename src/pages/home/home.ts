@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Platform, NavController } from 'ionic-angular';
 import { FingerprintAIO, FingerprintOptions } from '@ionic-native/fingerprint-aio';
-import { UserPage } from '../user/user';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { Page } from 'ionic-angular/umd/navigation/nav-util';
+import { AccountPage } from '../account/account';
 
 @Component({
   selector: 'page-home',
@@ -26,7 +26,7 @@ export class HomePage {
       await this.platform.ready().then(() => {
         this.fingerprint.isAvailable().then(() => {
           this.fingerprint.show(this.fingerprintOptions).then(() => {
-            this.openPage(UserPage);
+            this.openPage(AccountPage);
           })
         });
       });

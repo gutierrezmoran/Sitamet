@@ -1,10 +1,10 @@
 <ion-header>
-  <ion-navbar color="sitamet">
-    <ion-title>Account</ion-title>
+  <ion-navbar hideBackButton color="{{movementsSwitch}}">
+    <ion-title>Sitamet</ion-title>
   </ion-navbar>
 
-  <ion-toolbar no-border color="sitamet">
-    <ion-segment [(ngModel)]="movements" no-padding color="light">
+  <ion-toolbar no-border color="{{movementsSwitch}}">
+    <ion-segment [(ngModel)]="movementsSwitch" no-padding color="light">
       <ion-segment-button value="all">
         All
       </ion-segment-button>
@@ -21,55 +21,59 @@
 
 <ion-content>
 
-  <ion-card class="card-available-balance">
-    <ion-card-header class="available-balance">5.895,89€</ion-card-header>
-    <ion-card-content class="card-available-balance-description">Available balance</ion-card-content>
+  <ion-card class="card-balance">
+    <ion-card-header class="balance" *ngFor="let balance of balance">{{balance.Balance}} €</ion-card-header>
   </ion-card>
 
-  <div [ngSwitch]="movements">
+  <div [ngSwitch]="movementsSwitch">
+
     <ion-list *ngSwitchCase="'all'">
-      <ion-item>
-        <h2>Ruby</h2>
-      </ion-item>
-      <ion-item>
-        <h2>Oscar</h2>
-      </ion-item>
-      <ion-item>
-        <h2>Zoey</h2>
-      </ion-item>
-      <ion-item>
-        <h2>Otto</h2>
-      </ion-item>
+      <ion-list>
+        <ion-item *ngFor="let movement of movements">
+          <p class="title-movement">{{movement.Concept}}</p>
+          <div class="data-movement">
+            <p>{{movement.Value}} €</p>
+            <p>{{movement.Date}}</p>
+          </div>
+        </ion-item>
+      </ion-list>
     </ion-list>
 
     <ion-list *ngSwitchCase="'spent'">
-      <ion-item>
-        <h2>Luna</h2>
-      </ion-item>
-      <ion-item>
-        <h2>Milo</h2>
-      </ion-item>
-      <ion-item>
-        <h2>Bandit</h2>
-      </ion-item>
-      <ion-item>
-        <h2>Nala</h2>
-      </ion-item>
+      <ion-list>
+        <ion-item *ngFor="let spent of expenses">
+          <p class="title-movement">{{spent.Concept}}</p>
+          <div class="data-movement">
+            <p>{{spent.Value}} €</p>
+            <p>{{spent.Date}}</p>
+          </div>
+        </ion-item>
+      </ion-list>
+
+      <ion-fab right bottom>
+        <button ion-fab color="spent">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-fab>
     </ion-list>
 
     <ion-list *ngSwitchCase="'deposited'">
-      <ion-item>
-        <h2>Daffy</h2>
-      </ion-item>
-      <ion-item>
-        <h2>Huey</h2>
-      </ion-item>
-      <ion-item>
-        <h2>Dewey</h2>
-      </ion-item>
-      <ion-item>
-        <h2>Louie</h2>
-      </ion-item>
+      <ion-list>
+        <ion-item *ngFor="let deposited of deposits">
+          <p class="title-movement">{{deposited.Concept}}</p>
+          <div class="data-movement">
+            <p>{{deposited.Value}} €</p>
+            <p>{{deposited.Date}}</p>
+          </div>
+        </ion-item>
+      </ion-list>
+
+      <ion-fab right bottom>
+        <button ion-fab color="deposited">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-fab>
+
     </ion-list>
   </div>
 

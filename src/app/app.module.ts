@@ -8,14 +8,16 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
-import { UserPage } from '../pages/user/user';
 import { AccountPage } from '../pages/account/account';
+import { DatabaseConnectorProvider } from '../providers/databaseConnectorProvider/databaseConnectorProvider';
+import { MovementsProvider } from '../providers/movements/movements';
+import { SQLite } from '@ionic-native/sqlite';
+import { SqliteDbCopy } from '@ionic-native/sqlite-db-copy';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    UserPage,
     AccountPage
   ],
   imports: [
@@ -26,7 +28,6 @@ import { AccountPage } from '../pages/account/account';
   entryComponents: [
     MyApp,
     HomePage,
-    UserPage,
     AccountPage
   ],
   providers: [
@@ -34,7 +35,11 @@ import { AccountPage } from '../pages/account/account';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NativePageTransitions,
-    FingerprintAIO
+    FingerprintAIO,
+    SQLite,
+    SqliteDbCopy,
+    DatabaseConnectorProvider,
+    MovementsProvider
   ]
 })
 export class AppModule {}

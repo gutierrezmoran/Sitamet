@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the AccountPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { MovementsProvider } from '../../providers/movements/movements';
 
 @IonicPage()
 @Component({
@@ -15,11 +9,35 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AccountPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  movementsSwitch: String;
+  movements: Array<any>;
+  expenses: Array<any>;
+  deposits: Array<any>;
+  balance: Array<any>;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private movementsCtrl: MovementsProvider) {
+    this.navCtrl.remove(0);
+    this.movementsSwitch = "all";
+    this.movements = this.allMovements;
+    this.deposits = this.getDeposits();
+    this.expenses = this.getExpenses();
+    this.balance = this.getBalance();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AccountPage');
+  get allMovements(): Array<any> {
+    return this.movementsCtrl.allMovements;
+  }
+
+  getExpenses(): Array<any> {
+    return this.movementsCtrl.expenses;
+  }
+
+  getDeposits(): Array<any> {
+    return this.movementsCtrl.deposits;
+  }
+
+  getBalance(): Array<any> {
+    return this.movementsCtrl.balance;
   }
 
 }

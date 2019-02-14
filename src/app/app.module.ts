@@ -13,12 +13,14 @@ import { DatabaseConnectorProvider } from '../providers/databaseConnectorProvide
 import { MovementsProvider } from '../providers/movements/movements';
 import { SQLite } from '@ionic-native/sqlite';
 import { SqliteDbCopy } from '@ionic-native/sqlite-db-copy';
+import { SettingsPage } from '../pages/settings/settings';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    AccountPage
+    AccountPage,
+    SettingsPage
   ],
   imports: [
     BrowserModule,
@@ -28,12 +30,13 @@ import { SqliteDbCopy } from '@ionic-native/sqlite-db-copy';
   entryComponents: [
     MyApp,
     HomePage,
-    AccountPage
+    AccountPage,
+    SettingsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     NativePageTransitions,
     FingerprintAIO,
     SQLite,
@@ -42,4 +45,4 @@ import { SqliteDbCopy } from '@ionic-native/sqlite-db-copy';
     MovementsProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }

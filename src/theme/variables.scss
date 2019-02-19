@@ -55,8 +55,40 @@ $colors: (
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
+// Alert
+$alert-md-max-width: 100%;
+$alert-md-max-height: 600px;
+
+// Title alert
+$alert-md-title-font-size: 2em;
+$alert-md-head-text-align: center;
+$alert-md-head-padding-bottom: 5em;
+$alert-md-head-padding-top: 5em;
+
+// Buttons group
+$alert-md-button-group-padding-bottom: 0;
+$alert-md-button-group-padding-end: 0;
+$alert-md-button-group-padding-top: 0;
+$alert-md-button-group-padding-start: 0;
+$alert-md-button-group-justify-content: center;
+
+$alert-md-box-shadow: none;
+
+// Button alert
+$alert-md-button-border-radius: 0;
+$alert-md-button-font-weight: bold;
+$alert-md-button-background-color: #008172;
+$alert-md-button-text-color: #f4f4f4;
+$alert-md-button-padding-top: 1.3em;
+$alert-md-button-padding-start: 0;
+$alert-md-button-padding-end: 0;
+$alert-md-button-padding-button: $alert-md-button-padding-top; 
+$alert-md-button-margin-end: 0;
 
 
+// Inputs
+$text-input-md-highlight-color-valid: #008172;
+$text-input-md-highlight-color-invalid: crimson;
 
 // App Windows Variables
 // --------------------------------------------------

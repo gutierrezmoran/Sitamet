@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { MovementsProvider } from '../../providers/movements/movements';
+import { Movement } from '../../core/model/Movement';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { AddDepositPage } from '../add-deposit/add-deposit';
 
 @IonicPage()
 @Component({
@@ -10,34 +12,57 @@ import { MovementsProvider } from '../../providers/movements/movements';
 export class AccountPage {
 
   movementsSwitch: String;
-  movements: Array<any>;
-  expenses: Array<any>;
-  deposits: Array<any>;
-  balance: Array<any>;
+  movements: Array<Movement> = new Array<Movement>();
+  expenses: Array<Movement> = new Array<Movement>();
+  deposits: Array<Movement> = new Array<Movement>();
+  balance: number = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private movementsCtrl: MovementsProvider) {
-    this.navCtrl.remove(0);
-    this.movementsSwitch = "all";
-    this.movements = this.allMovements;
-    this.deposits = this.getDeposits();
-    this.expenses = this.getExpenses();
-    this.balance = this.getBalance();
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: NativeStorage) {
+    this.navCtrl.removeView(this.navCtrl.getPrevious());
+    this.movementsSwitch = "spent";
+    this.getExpenses();
+    this.getDeposits();
+    this.getBalance();
   }
 
-  get allMovements(): Array<any> {
-    return this.movementsCtrl.allMovements;
+  refresh(refresher) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      this.getExpenses();
+      this.getDeposits();
+      this.getBalance();
+
+      refresher.complete();
+    }, 2000);
   }
 
-  getExpenses(): Array<any> {
-    return this.movementsCtrl.expenses;
+  async getExpenses() {
+    await this.storage.getItem("expenses").then((data) => {
+      this.expenses = data;
+    }).catch((e) => {
+      console.log("No hay gastos");
+    });
   }
 
-  getDeposits(): Array<any> {
-    return this.movementsCtrl.deposits;
+  async getDeposits() {
+    await this.storage.getItem("deposits").then((data) => {
+      this.deposits = data;
+    }).catch((e) => {
+      console.log("No hay depósitos");
+    });
   }
 
-  getBalance(): Array<any> {
-    return this.movementsCtrl.balance;
+  async getBalance() {
+    await this.storage.getItem("balance").then((data) => {
+      this.balance = data;
+    }).catch((e) => {
+      console.log("No hay balance");
+    });
+  }
+
+  addDeposit() {
+    this.navCtrl.push(AddDepositPage);
   }
 
 }

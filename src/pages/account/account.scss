@@ -19,7 +19,7 @@ page-account {
     justify-content: space-between;
 }
 
-.content-balance {
+.subtitle {
     text-align: center;
     padding: 0 0 .3em 0;
     margin: 0;
@@ -35,8 +35,13 @@ page-account {
 }
 
 .card-balance {
-    background-color: #fafafa;
+    background-color: #f4f4f4;
     box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+}
+
+.header-card-movement {
+    text-align: center;
+    font-weight: bold;
 }
 
 .button-segment {

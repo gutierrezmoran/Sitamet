@@ -9,10 +9,9 @@ import { HomePage } from '../pages/home/home';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
 import { AccountPage } from '../pages/account/account';
-import { DatabaseConnectorProvider } from '../providers/databaseConnectorProvider/databaseConnectorProvider';
-import { MovementsProvider } from '../providers/movements/movements';
-import { SQLite } from '@ionic-native/sqlite';
-import { SqliteDbCopy } from '@ionic-native/sqlite-db-copy';
+import { HttpModule } from '@angular/http';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { AddDepositPage } from '../pages/add-deposit/add-deposit';
 import { SettingsPage } from '../pages/settings/settings';
 
 @NgModule({
@@ -20,18 +19,20 @@ import { SettingsPage } from '../pages/settings/settings';
     MyApp,
     HomePage,
     AccountPage,
-    SettingsPage
+    SettingsPage,
+    AddDepositPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp), HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     AccountPage,
-    SettingsPage
+    SettingsPage,
+    AddDepositPage
   ],
   providers: [
     StatusBar,
@@ -39,10 +40,7 @@ import { SettingsPage } from '../pages/settings/settings';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     NativePageTransitions,
     FingerprintAIO,
-    SQLite,
-    SqliteDbCopy,
-    DatabaseConnectorProvider,
-    MovementsProvider
+    NativeStorage
   ]
 })
 export class AppModule { }

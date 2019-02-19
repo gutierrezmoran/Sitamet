@@ -6,8 +6,12 @@
 
 <ion-footer no-border>
   <ion-list class="list-access">
-    <ion-item class="item-access" (click)="readFingerprint()">
+    <ion-item *ngIf="isFingerprint" class="item-access" (click)="readFingerprint()">
       <ion-icon class="icon-finger-print" name="finger-print"></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="!isFingerprint" class="item-access" (click)="login()">
+      <ion-icon class="icon-finger-print" name="log-in"></ion-icon>
     </ion-item>
   </ion-list>
 </ion-footer>

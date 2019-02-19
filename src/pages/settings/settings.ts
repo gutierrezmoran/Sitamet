@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the SettingsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @IonicPage()
 @Component({
@@ -15,11 +9,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SettingsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  fingerprint: boolean;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: NativeStorage) {
+    this.loadConfiguration();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingsPage');
+  async loadConfiguration() {
+    await this.storage.getItem("fingerprintConfiguration").then((data: boolean) => {
+      this.fingerprint = data;
+    });
+  }
+
+  async changeConfiguration() {
+    await this.storage.setItem("fingerprintConfiguration", this.fingerprint);
   }
 
 }

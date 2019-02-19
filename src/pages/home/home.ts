@@ -4,6 +4,7 @@ import { FingerprintAIO, FingerprintOptions } from '@ionic-native/fingerprint-ai
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { Page } from 'ionic-angular/umd/navigation/nav-util';
 import { AccountPage } from '../account/account';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @Component({
   selector: 'page-home',
@@ -12,13 +13,15 @@ import { AccountPage } from '../account/account';
 export class HomePage {
 
   private fingerprintOptions: FingerprintOptions;
+  private isFingerprint: boolean;
 
-  constructor(private fingerprint: FingerprintAIO, private platform: Platform, private navCtrl: NavController, private nativePageTransitions: NativePageTransitions) {
+  constructor(private fingerprint: FingerprintAIO, private platform: Platform, private navCtrl: NavController, private nativePageTransitions: NativePageTransitions, private storage: NativeStorage) {
     this.fingerprintOptions = {
       clientId: 'fingerprint-demo',
       clientSecret: 'password',
       disableBackup: true
     }
+    this.setFingerprintConfiguration();
   }
 
   async readFingerprint() {
@@ -48,6 +51,19 @@ export class HomePage {
 
     this.nativePageTransitions.fade(options);
     this.navCtrl.push(page, data);
+  }
+
+  login() {
+    this.openPage(AccountPage);
+  }
+
+  async setFingerprintConfiguration() {
+    await this.storage.getItem("fingerprintConfiguration").then((data: boolean) => {
+      this.isFingerprint = data;
+    }).catch(() => {
+      this.storage.setItem("fingerprintConfiguration", false);
+      this.isFingerprint = false;
+    })
   }
 
 }

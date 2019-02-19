@@ -1,0 +1,23 @@
+<ion-header no-border>
+  <ion-navbar>
+    <ion-title>Add Deposit</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-item>
+      <ion-label floating>Concept</ion-label>
+      <ion-input type="text" [(ngModel)]="concept"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Value</ion-label>
+      <ion-input type="number" [(ngModel)]="value"></ion-input>
+    </ion-item>
+
+</ion-content>
+
+<ion-footer>
+    <button class="add-buttom" full (click)="addMovement()">Add</button>
+</ion-footer>

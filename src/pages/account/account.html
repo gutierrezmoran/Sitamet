@@ -30,44 +30,33 @@
 
   <div [ngSwitch]="movementsSwitch">
 
-    <ion-card>
-      <ion-card-header class="header-card-movement">Movements</ion-card-header>
-      <ion-card-content>
-        <ion-list *ngSwitchCase="'spent'">
+    <ion-list *ngSwitchCase="'spent'">
+      <p class="subtitle" *ngIf="expenses.length == 0">No expenses</p>
 
-          <p class="subtitle" *ngIf="expenses.length == 0">No expenses</p>
+      <ion-card *ngFor="let spent of expenses" class="card-movement">
+        <ion-card-header no-padding>
+          {{spent._concept}}
+        </ion-card-header>
+        <ion-card-content class="data-movement" no-padding>
+          <p class="movement-value value-negative">{{spent._value}} €</p>
+          <p class="movement-date">{{spent._date}}</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
 
-          <ion-list>
-            <ion-item *ngFor="let spent of expenses">
-              <p class="title-movement">{{spent.concept}}</p>
-              <div class="data-movement">
-                <p>{{spent.value}} €</p>
-                <p>{{spent.date}}</p>
-              </div>
-            </ion-item>
-          </ion-list>
+    <ion-list *ngSwitchCase="'deposited'">
+      <p class="subtitle" *ngIf="deposits.length == 0">No deposits</p>
 
-        </ion-list>
-
-
-        <ion-list *ngSwitchCase="'deposited'">
-
-          <p class="subtitle" *ngIf="deposits.length == 0">No deposits</p>
-
-          <ion-list>
-            <ion-item *ngFor="let deposited of deposits">
-              <p class="title-movement">{{deposited._concept}}</p>
-              <div class="data-movement">
-                <p>{{deposited._value}} €</p>
-                <p displayFormat="DD MM YYYY">{{deposited._date}}</p>
-              </div>
-            </ion-item>
-          </ion-list>
-
-        </ion-list>
-
-      </ion-card-content>
-    </ion-card>
+      <ion-card *ngFor="let deposit of deposits" class="card-movement">
+        <ion-card-header no-padding>
+          {{deposit._concept}}
+        </ion-card-header>
+        <ion-card-content class="data-movement" no-padding>
+          <p class="movement-value value-positive">{{deposit._value}}€</p>
+          <p class="movement-date">{{deposit._date}}</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
 
   </div>
 

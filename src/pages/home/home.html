@@ -2,16 +2,13 @@
   <img class="logo" src="../../assets/imgs/logo.png">
 </ion-header>
 
-<ion-content></ion-content>
-
-<ion-footer no-border>
+<ion-content>
   <ion-list class="list-access">
-    <ion-item *ngIf="isFingerprint" class="item-access" (click)="readFingerprint()">
-      <ion-icon class="icon-finger-print" name="finger-print"></ion-icon>
+
+    <ion-item class="item-access" (click)="readFingerprint()">
+      <ion-icon class="icon-left-item" name="finger-print" item-start></ion-icon>
+      Access with fingerprint
     </ion-item>
 
-    <ion-item *ngIf="!isFingerprint" class="item-access" (click)="login()">
-      <ion-icon class="icon-finger-print" name="log-in"></ion-icon>
-    </ion-item>
   </ion-list>
-</ion-footer>
+</ion-content>

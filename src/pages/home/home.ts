@@ -13,7 +13,6 @@ import { NativeStorage } from '@ionic-native/native-storage';
 export class HomePage {
 
   private fingerprintOptions: FingerprintOptions;
-  private isFingerprint: boolean;
 
   constructor(private fingerprint: FingerprintAIO, private platform: Platform, private navCtrl: NavController, private nativePageTransitions: NativePageTransitions, private storage: NativeStorage) {
     this.fingerprintOptions = {
@@ -40,11 +39,11 @@ export class HomePage {
 
   openPage(page: Page, data?: any) {
     let options: NativeTransitionOptions = {
-      duration: 500,
+      duration: 300,
       slowdownfactor: 3,
       slidePixels: 20,
       iosdelay: 100,
-      androiddelay: 150,
+      androiddelay: 100,
       fixedPixelsTop: 0,
       fixedPixelsBottom: 60
     };
@@ -59,10 +58,11 @@ export class HomePage {
 
   async setFingerprintConfiguration() {
     await this.storage.getItem("fingerprintConfiguration").then((data: boolean) => {
-      this.isFingerprint = data;
+      if(!data) {
+        this.login();
+      }
     }).catch(() => {
       this.storage.setItem("fingerprintConfiguration", false);
-      this.isFingerprint = false;
     })
   }
 

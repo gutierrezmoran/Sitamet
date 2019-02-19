@@ -15,7 +15,7 @@ export class AccountPage {
   movements: Array<Movement> = new Array<Movement>();
   expenses: Array<Movement> = new Array<Movement>();
   deposits: Array<Movement> = new Array<Movement>();
-  balance: number = 0;
+  balance: String = "0";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: NativeStorage) {
     this.navCtrl.removeView(this.navCtrl.getPrevious());
@@ -38,7 +38,7 @@ export class AccountPage {
   }
 
   async getExpenses() {
-    await this.storage.getItem("expenses").then((data) => {
+    await this.storage.getItem("expenses").then((data: Array<Movement>) => {
       this.expenses = data;
     }).catch((e) => {
       console.log("No hay gastos");
@@ -46,7 +46,7 @@ export class AccountPage {
   }
 
   async getDeposits() {
-    await this.storage.getItem("deposits").then((data) => {
+    await this.storage.getItem("deposits").then((data: Array<Movement>) => {
       this.deposits = data;
     }).catch((e) => {
       console.log("No hay depósitos");
@@ -54,8 +54,10 @@ export class AccountPage {
   }
 
   async getBalance() {
-    await this.storage.getItem("balance").then((data) => {
-      this.balance = data;
+    await this.storage.getItem("balance").then((data: number) => {
+      let formatedBalance = new Intl.NumberFormat('es-ES', { minimumFractionDigits: 2 }).format(data);
+
+      this.balance = formatedBalance;
     }).catch((e) => {
       console.log("No hay balance");
     });

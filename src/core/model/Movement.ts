@@ -2,11 +2,11 @@ export class Movement {
 
     private _concept: String;
     private _date: String;
-    private _value: number;
+    private _value: String;
 
-    constructor(concept: string, value: number) {
+    constructor(concept: String, value: String) {
         this._concept = concept;
-        this._date = new Date().toISOString();
+        this._date = this.currentDate;
         this._value = value;
     }
 
@@ -14,48 +14,63 @@ export class Movement {
      * Getter concept
      * @return {String}
      */
-	public get concept(): String {
-		return this._concept;
-	}
+    public get concept(): String {
+        return this._concept;
+    }
 
     /**
      * Getter date
      * @return {String}
      */
-	public get date(): String {
-		return this._date;
-	}
+    public get date(): String {
+        return this._date;
+    }
 
     /**
      * Getter value
      * @return {String}
      */
-	public get value(): number {
-		return this._value;
-	}
+    public get value(): String {
+        return this._value;
+    }
 
     /**
      * Setter concept
      * @param {String} value
      */
-	public set concept(value: String) {
-		this._concept = value;
-	}
+    public set concept(value: String) {
+        this._concept = value;
+    }
 
     /**
      * Setter date
      * @param {String} value
      */
-	public set date(value: String) {
-		this._date = value;
-	}
+    public set date(value: String) {
+        this._date = value;
+    }
 
     /**
      * Setter value
      * @param {String} value
      */
-	public set value(value: number) {
-		this._value = value;
-	}
+    public set value(value: String) {
+        this._value = value;
+    }
+
+    private get currentDate(): string {
+        let date = new Date();
+
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let hour = date.getHours();
+        let minute = date.getMinutes();
+
+        return (day > 10 ? day : "0" + day) + "/" +
+            (month > 10 ? month : "0" + month) + "/" +
+            date.getFullYear() + " " +
+            (hour > 10 ? hour : "0" + hour) + ":" +
+            (minute > 10 ? minute : "0" + minute);
+    }
 
 }

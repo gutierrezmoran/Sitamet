@@ -18,34 +18,34 @@ export class AddDepositPage {
   }
 
   async addMovement() {
-    await this.storage.getItem("deposits").then((data: Array<any>) => {
-      let deposits = data;
-
-      deposits.push(new Movement(this.concept, this.value));
-
-      this.storage.setItem("deposits", deposits);
+    await this.storage.getItem("deposits").then((data: Array<Movement>) => {
+      this.saveMovement("deposits", data);
     }).catch(() => {
-      let deposits = new Array<Movement>();
-
-      deposits.push(new Movement(this.concept, this.value));
-
-      this.storage.setItem("deposits", deposits);
-    })
+      this.saveMovement("deposits", new Array<Movement>());
+    });
 
     this.updateBalance();
     this.showAlert();
   }
 
+  private async saveMovement(itemName: string, movements: Array<Movement>) {
+    let formatedValue = new Intl.NumberFormat('es-ES', { minimumFractionDigits: 2 }).format(this.value);
+
+    movements.unshift(new Movement(this.concept, formatedValue));
+    await this.storage.setItem(itemName, movements);
+  }
+
   private async updateBalance() {
     await this.storage.getItem("balance").then((data: number) => {
       let balance: number = Number(data) + Number(this.value);
+
       this.storage.setItem("balance", balance);
     }).catch(() => {
       this.storage.setItem("balance", this.value);
     })
   }
 
-  async showAlert() {
+  private async showAlert() {
     const alert = this.alert.create({
       title: 'Deposit added correctly',
       buttons: ['Accept']

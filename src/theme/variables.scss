@@ -34,11 +34,9 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
+  primary:    #404040,
+  secondary:  #f4f4f4,
   danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #404040,
   deposited:  #008172,
   spent:      crimson
 );
@@ -60,10 +58,10 @@ $alert-md-max-width: 100%;
 $alert-md-max-height: 600px;
 
 // Title alert
-$alert-md-title-font-size: 2em;
+$alert-md-title-font-size: 1.5em;
 $alert-md-head-text-align: center;
-$alert-md-head-padding-bottom: 5em;
-$alert-md-head-padding-top: 5em;
+//$alert-md-head-padding-bottom: 0;
+$alert-md-head-padding-top: 2em;
 
 // Buttons group
 $alert-md-button-group-padding-bottom: 0;
@@ -76,9 +74,9 @@ $alert-md-box-shadow: none;
 
 // Button alert
 $alert-md-button-border-radius: 0;
-$alert-md-button-font-weight: bold;
-$alert-md-button-background-color: #008172;
-$alert-md-button-text-color: #f4f4f4;
+$alert-md-button-font-weight: 100;
+$alert-md-button-background-color: #DDDDDD;
+$alert-md-button-text-color: #404040;
 $alert-md-button-padding-top: 1.3em;
 $alert-md-button-padding-start: 0;
 $alert-md-button-padding-end: 0;

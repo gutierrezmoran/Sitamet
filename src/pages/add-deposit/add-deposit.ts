@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Movement } from '../../core/model/Movement';
+import { Formatter } from '../../core/model/Formatter';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -10,11 +12,31 @@ import { Movement } from '../../core/model/Movement';
 })
 export class AddDepositPage {
 
+  validatorDeposits: FormGroup;
+  validatorDepositsMessages = {
+    'concept': [
+      { type: 'required', message: 'The concept is required.'},
+      { type: 'minlength', message: 'Must be at least 5 characters long.'},
+      { type: 'maxlength', message: 'Cannot be more than 50 characters long.' },
+		  { type: 'pattern', message: 'Your concept must contain only numbers, letters, whitespaces, points and commas.' },
+    ],
+    'value': [
+      { type: 'required', message: 'The value is required.'},
+      { type: 'pattern', message: 'Must contain only numbers and optional part decimal.' }
+    ]
+}
   concept: string;
   value: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: NativeStorage, private alert: AlertController) {
-    this.value = 0;
+    this.initializeValidator();
+  }
+
+  private initializeValidator() {
+    this.validatorDeposits = new FormGroup({
+      concept: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50), Validators.pattern("[A-Za-z0-9\\s\\.\\,]+")]),
+      value: new FormControl('', [Validators.required, Validators.pattern("[0-9]+([.][0-9]+)?")])
+    });
   }
 
   async addMovement() {
@@ -29,9 +51,10 @@ export class AddDepositPage {
   }
 
   private async saveMovement(itemName: string, movements: Array<Movement>) {
-    let formatedValue = new Intl.NumberFormat('es-ES', { minimumFractionDigits: 2 }).format(this.value);
+    let formatedValue = Formatter.format(this.value);
 
     movements.unshift(new Movement(this.concept, formatedValue));
+
     await this.storage.setItem(itemName, movements);
   }
 
@@ -51,6 +74,20 @@ export class AddDepositPage {
       buttons: ['Accept']
     });
     await alert.present();
+  }
+
+  hasError(control: AbstractControl): boolean {
+    if(control.dirty) {
+      return control.errors != null;
+    }
+  }
+
+  errorsFormGroup(formGroup: FormGroup): boolean {
+    if(formGroup.dirty) {
+      return !formGroup.valid;
+    }
+
+    return true;
   }
 
 }

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Movement } from '../../core/model/Movement';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { AddDepositPage } from '../add-deposit/add-deposit';
+import { Formatter } from '../../core/model/Formatter';
 
 @IonicPage()
 @Component({
@@ -55,7 +56,7 @@ export class AccountPage {
 
   async getBalance() {
     await this.storage.getItem("balance").then((data: number) => {
-      let formatedBalance = new Intl.NumberFormat('es-ES', { minimumFractionDigits: 2 }).format(data);
+      let formatedBalance = Formatter.format(data);
 
       this.balance = formatedBalance;
     }).catch((e) => {

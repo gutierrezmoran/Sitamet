@@ -28,8 +28,9 @@ export class AddMovementPage {
       this.saveMovement(this.movementType.itemType, new Array<Movement>());
     });
 
-    this.updateBalance();
-    this.showAlert();
+    await this.updateBalance();
+    await this.showAlert();
+    this.reset();
   }
 
   private async saveMovement(itemName: string, movements: Array<Movement>) {
@@ -58,6 +59,12 @@ export class AddMovementPage {
       buttons: ['Accept']
     });
     await alert.present();
+  }
+
+  private reset() {
+    this.concept = "";
+    this.value = null;
+    this.validator.reset();
   }
 
 }

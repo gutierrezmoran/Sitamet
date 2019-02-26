@@ -22,21 +22,15 @@ export class AccountPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: NativeStorage) {
     this.navCtrl.removeView(this.navCtrl.getPrevious());
     this.movementsSwitch = "expenses";
-    this.getExpenses();
-    this.getDeposits();
-    this.getBalance();
+  }
+
+  ionViewWillEnter() {
+    this.updateData();
   }
 
   refresh(refresher) {
-    console.log('Begin async operation');
-
-    setTimeout(() => {
-      this.getExpenses();
-      this.getDeposits();
-      this.getBalance();
-
-      refresher.complete();
-    }, 2000);
+    this.updateData();
+    refresher.complete();
   }
 
   async getExpenses() {
@@ -71,6 +65,12 @@ export class AccountPage {
 
   addSpent() {
     this.navCtrl.push(AddMovementPage, new MovementType("spent", "expenses"));
+  }
+
+  private async updateData() {
+    await this.getExpenses();
+    await this.getDeposits();
+    await this.getBalance();
   }
 
 }

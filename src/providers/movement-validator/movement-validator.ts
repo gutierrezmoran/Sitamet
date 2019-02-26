@@ -52,4 +52,8 @@ export class MovementValidatorProvider {
     return MESSAGES;
   }
 
+  reset() {
+    this._validator.reset();
+  }
+
 }

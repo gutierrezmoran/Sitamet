@@ -6,11 +6,11 @@
 
   <ion-toolbar>
     <ion-segment class="segment" [(ngModel)]="movementsSwitch" color="dark">
-      <ion-segment-button class="button-segment" value="spent">
-        Spent
+      <ion-segment-button class="button-segment" value="expenses">
+        Expenses
       </ion-segment-button>
-      <ion-segment-button class="button-segment" value="deposited">
-        Deposited
+      <ion-segment-button class="button-segment" value="deposits">
+        Deposits
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -30,7 +30,7 @@
 
   <div [ngSwitch]="movementsSwitch">
 
-    <ion-list *ngSwitchCase="'spent'">
+    <ion-list *ngSwitchCase="'expenses'">
       <p class="subtitle" *ngIf="expenses.length == 0">No expenses</p>
 
       <ion-card *ngFor="let spent of expenses" class="card-movement">
@@ -44,7 +44,7 @@
       </ion-card>
     </ion-list>
 
-    <ion-list *ngSwitchCase="'deposited'">
+    <ion-list *ngSwitchCase="'deposits'">
       <p class="subtitle" *ngIf="deposits.length == 0">No deposits</p>
 
       <ion-card *ngFor="let deposit of deposits" class="card-movement">
@@ -58,18 +58,18 @@
       </ion-card>
     </ion-list>
 
+    <ion-fab *ngSwitchCase="'deposits'" class="add-button" right bottom (click)="addDeposit()">
+      <button ion-fab color="deposited">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-fab>
+  
+    <ion-fab *ngSwitchCase="'expenses'" class="add-button" right bottom (click)="addSpent()">
+      <button ion-fab color="spent">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-fab>
+
   </div>
-
-  <ion-fab *ngIf="movementsSwitch === 'deposited'" class="add-button" right bottom (click)="addDeposit()">
-    <button ion-fab color="deposited">
-      <ion-icon name="add"></ion-icon>
-    </button>
-  </ion-fab>
-
-  <ion-fab *ngIf="movementsSwitch === 'spent'" class="add-button" right bottom>
-    <button ion-fab color="spent">
-      <ion-icon name="add"></ion-icon>
-    </button>
-  </ion-fab>
 
 </ion-content>

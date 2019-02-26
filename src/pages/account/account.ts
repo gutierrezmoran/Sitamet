@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Movement } from '../../core/model/Movement';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { AddDepositPage } from '../add-deposit/add-deposit';
+import { AddMovementPage } from '../add-movement/add-movement';
 import { Formatter } from '../../core/model/Formatter';
+import { MovementType } from '../../core/model/MovementType';
 
 @IonicPage()
 @Component({
@@ -20,7 +21,7 @@ export class AccountPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: NativeStorage) {
     this.navCtrl.removeView(this.navCtrl.getPrevious());
-    this.movementsSwitch = "spent";
+    this.movementsSwitch = "expenses";
     this.getExpenses();
     this.getDeposits();
     this.getBalance();
@@ -65,7 +66,11 @@ export class AccountPage {
   }
 
   addDeposit() {
-    this.navCtrl.push(AddDepositPage);
+    this.navCtrl.push(AddMovementPage, new MovementType("deposit", "deposits"));
+  }
+
+  addSpent() {
+    this.navCtrl.push(AddMovementPage, new MovementType("spent", "expenses"));
   }
 
 }

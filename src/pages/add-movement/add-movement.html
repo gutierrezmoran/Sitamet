@@ -1,0 +1,41 @@
+<ion-header no-border>
+  <ion-navbar>
+    <ion-title>Add {{movementType.type}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content [formGroup]="validator.validator">
+
+  <ion-list class="form-list">
+
+    <ion-item class="form-item">
+      <ion-label floating>Concept</ion-label>
+      <ion-input type="text" [(ngModel)]="concept" formControlName="concept"></ion-input>
+    </ion-item>
+    <ng-container *ngFor="let control of validator.messages.concept">
+      <p class="form-error-message"
+        *ngIf="validator.validator.get('concept').hasError(control.type) && validator.hasError(validator.validator.get('concept'))">
+        {{ control.message }}
+      </p>
+    </ng-container>
+
+    <ion-item class="form-item">
+      <ion-label floating>Value</ion-label>
+      <ion-input type="number" [(ngModel)]="value" formControlName="value"></ion-input>
+    </ion-item>
+    <ng-container *ngFor="let control of validator.messages.value">
+      <p class="form-error-message"
+        *ngIf="validator.validator.get('value').hasError(control.type) && validator.hasError(validator.validator.get('value'))">
+        {{ control.message }}
+      </p>
+    </ng-container>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-fab right bottom class="add-button">
+  <button ion-fab color="deposited" [disabled]="validator.errors" (click)="addMovement()">
+    <ion-icon name="checkmark"></ion-icon>
+  </button>
+</ion-fab>

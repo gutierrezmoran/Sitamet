@@ -11,8 +11,9 @@ import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
 import { AccountPage } from '../pages/account/account';
 import { HttpModule } from '@angular/http';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { AddDepositPage } from '../pages/add-deposit/add-deposit';
+import { AddMovementPage } from '../pages/add-movement/add-movement';
 import { SettingsPage } from '../pages/settings/settings';
+import { MovementValidatorProvider } from '../providers/movement-validator/movement-validator';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { SettingsPage } from '../pages/settings/settings';
     HomePage,
     AccountPage,
     SettingsPage,
-    AddDepositPage
+    AddMovementPage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +33,7 @@ import { SettingsPage } from '../pages/settings/settings';
     HomePage,
     AccountPage,
     SettingsPage,
-    AddDepositPage
+    AddMovementPage
   ],
   providers: [
     StatusBar,
@@ -40,7 +41,8 @@ import { SettingsPage } from '../pages/settings/settings';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     NativePageTransitions,
     FingerprintAIO,
-    NativeStorage
+    NativeStorage,
+    MovementValidatorProvider
   ]
 })
 export class AppModule { }

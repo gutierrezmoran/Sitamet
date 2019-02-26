@@ -1,76 +1,53 @@
+import { DateTimeFormatter } from "./DateTimeFormatter";
+import { NumberFormatter } from "./NumberFormatter";
+
 export class Movement {
 
     private _concept: String;
     private _date: String;
     private _value: String;
+    private _associateBalance: String;
+    isPositive: boolean;
 
-    constructor(concept: String, value: String) {
+    constructor(concept: String, value: number, associateBalance: number) {
         this._concept = concept;
-        this._date = this.currentDate;
-        this._value = value;
+        this._date = DateTimeFormatter.shortDateTime();
+        this._value = NumberFormatter.pointsAndCommas(value);
+        this._associateBalance = NumberFormatter.pointsAndCommas(associateBalance);
+        this.isPositive = value > 0 ? true : false;
+        this._value = this.isPositive ? "+" + this._value : this._value;
     }
 
-    /**
-     * Getter concept
-     * @return {String}
-     */
     public get concept(): String {
         return this._concept;
     }
 
-    /**
-     * Getter date
-     * @return {String}
-     */
     public get date(): String {
         return this._date;
     }
 
-    /**
-     * Getter value
-     * @return {String}
-     */
     public get value(): String {
         return this._value;
     }
 
-    /**
-     * Setter concept
-     * @param {String} value
-     */
+    public get associateBalance(): String {
+        return this._associateBalance;
+    }
+
     public set concept(value: String) {
         this._concept = value;
     }
 
-    /**
-     * Setter date
-     * @param {String} value
-     */
     public set date(value: String) {
         this._date = value;
     }
 
-    /**
-     * Setter value
-     * @param {String} value
-     */
     public set value(value: String) {
         this._value = value;
     }
 
-    private get currentDate(): string {
-        let date = new Date();
-
-        let day = date.getDate();
-        let month = date.getMonth() + 1;
-        let hour = date.getHours();
-        let minute = date.getMinutes();
-
-        return (day > 9 ? day : "0" + day) + "/" +
-            (month > 9 ? month : "0" + month) + "/" +
-            date.getFullYear() + " " +
-            (hour > 9 ? hour : "0" + hour) + ":" +
-            (minute > 9 ? minute : "0" + minute);
+    public set associateBalance(value: String) {
+        this._associateBalance = value;
     }
 
 }

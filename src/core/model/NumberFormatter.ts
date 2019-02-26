@@ -1,11 +1,12 @@
 const LOCAL_SPAIN = "es-ES";
-const OPTIONS = { minimumFractionDigits: 2 };
+const OPTIONS = { style: "currency", currency: "EUR" };
 
-export class Formatter {
+export class NumberFormatter {
 
     private static formatter: Intl.NumberFormat = new Intl.NumberFormat(LOCAL_SPAIN, OPTIONS);
 
-    static format(value: number): string {
+    // 99.999,99 €
+    static pointsAndCommas(value: number): string {
         return this.formatter.format(value);
     }
 

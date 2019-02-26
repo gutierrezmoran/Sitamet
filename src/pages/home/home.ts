@@ -58,11 +58,13 @@ export class HomePage {
 
   async setFingerprintConfiguration() {
     await this.storage.getItem("fingerprintConfiguration").then((data: boolean) => {
+      console.log(data);
       if(!data) {
         this.login();
       }
     }).catch(() => {
       this.storage.setItem("fingerprintConfiguration", false);
+      this.login();
     })
   }
 

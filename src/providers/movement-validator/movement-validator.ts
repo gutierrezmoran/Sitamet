@@ -26,7 +26,7 @@ export class MovementValidatorProvider {
   private async initializeValidator() {
     this._validator = new FormGroup({
       concept: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50), Validators.pattern("[A-Za-z0-9\\s\\.\\,]+")]),
-      value: new FormControl('', [Validators.required, Validators.pattern("\\d+(\\.\\d+)?")])
+      value: new FormControl('', [Validators.required, Validators.pattern("(\\-|\\+)?\\d+(\\.\\d+)?")])
     });
   }
 

@@ -7,14 +7,12 @@ page-account {
 }
 
 .card-movement {
-    padding: .7em;
-    border: 1px solid #dedede;
+    padding: 0 .7em;
     box-shadow: none !important;
 }
 
 .card-movement ion-card-header {
     text-overflow: ellipsis;
-    text-transform: uppercase;
 }
 
 .card-movements {
@@ -36,17 +34,27 @@ page-account {
     align-items: center;
 }
 
-.movement-value {
-    font-size: 1.5em;
-    font-weight: bold;
+.data-movement > .data-header {
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.data-movement > .value-positive {
+    color: #01a57c;
 }
 
 .data-movement > .value-negative {
     color: crimson;
 }
 
-.data-movement > .value-positive {
-    color: #008172;
+.data-movement > .movement-concept {
+    margin-right: 1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.data-movement > .data-content {
+    color: #999999;
 }
 
 .subtitle {
@@ -82,5 +90,5 @@ page-account {
 }
 
 .add-button {
-    margin: 1em;
+    margin: .8em;
 }

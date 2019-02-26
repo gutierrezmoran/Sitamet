@@ -16,7 +16,7 @@ export class MovementType {
 		return this._itemType;
     }
     
-    public convertNumberAccordingType(value: number): number {
+    public convertValue(value: number): number {
         return this._type === "spent" ? value * -1 : value;
     }
 

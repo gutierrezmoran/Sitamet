@@ -14,6 +14,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { AddMovementPage } from '../pages/add-movement/add-movement';
 import { SettingsPage } from '../pages/settings/settings';
 import { MovementValidatorProvider } from '../providers/movement-validator/movement-validator';
+import { MovementPage } from '../pages/movement/movement';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MovementValidatorProvider } from '../providers/movement-validator/movem
     HomePage,
     AccountPage,
     SettingsPage,
-    AddMovementPage
+    AddMovementPage,
+    MovementPage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,8 @@ import { MovementValidatorProvider } from '../providers/movement-validator/movem
     HomePage,
     AccountPage,
     SettingsPage,
-    AddMovementPage
+    AddMovementPage,
+    MovementPage
   ],
   providers: [
     StatusBar,

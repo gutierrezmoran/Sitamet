@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Movement } from '../../core/model/Movement';
-import { Formatter } from '../../core/model/Formatter';
-import { MovementType } from '../../core/model/MovementType';
 import { MovementValidatorProvider } from '../../providers/movement-validator/movement-validator';
 
 @IonicPage()
@@ -13,49 +11,48 @@ import { MovementValidatorProvider } from '../../providers/movement-validator/mo
 })
 export class AddMovementPage {
 
-  movementType: MovementType;
   concept: string;
   value: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: NativeStorage, private alert: AlertController, public validator: MovementValidatorProvider) {
-    this.movementType = navParams.data;
   }
 
   async addMovement() {
-    await this.storage.getItem(this.movementType.itemType).then((data: Array<Movement>) => {
-      this.saveMovement(this.movementType.itemType, data);
+    await this.updateBalance();
+
+    await this.storage.getItem("movements").then((data: Array<Movement>) => {
+      this.saveMovement("movements", data);
     }).catch(() => {
-      this.saveMovement(this.movementType.itemType, new Array<Movement>());
+      this.saveMovement("movements", new Array<Movement>());
     });
 
-    await this.updateBalance();
     await this.showAlert();
     this.reset();
   }
 
   private async saveMovement(itemName: string, movements: Array<Movement>) {
-    let formatedValue = Formatter.format(this.movementType.convertNumberAccordingType(this.value));
+    let balance;
+    
+    await this.storage.getItem("balance").then(data => balance = data);
 
-    movements.unshift(new Movement(this.concept, formatedValue));
+    movements.unshift(new Movement(this.concept, this.value, balance));
 
     await this.storage.setItem(itemName, movements);
   }
 
   private async updateBalance() {
-    let value = this.movementType.convertNumberAccordingType(this.value);
-
     await this.storage.getItem("balance").then((data: number) => {
-      let balance: number = Number(data) + Number(value);
+      let balance: number = Number(data) + Number(this.value);
 
       this.storage.setItem("balance", balance);
     }).catch(() => {
-      this.storage.setItem("balance", value);
+      this.storage.setItem("balance", this.value);
     })
   }
 
   private async showAlert() {
     const alert = this.alert.create({
-      title: this.movementType.type + ' added correctly',
+      title: 'Movement added correctly',
       buttons: ['Accept']
     });
     await alert.present();

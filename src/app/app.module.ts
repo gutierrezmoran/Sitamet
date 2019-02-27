@@ -9,12 +9,13 @@ import { HomePage } from '../pages/home/home';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
 import { AccountPage } from '../pages/account/account';
-import { HttpModule } from '@angular/http';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { AddMovementPage } from '../pages/add-movement/add-movement';
 import { SettingsPage } from '../pages/settings/settings';
 import { MovementValidatorProvider } from '../providers/movement-validator/movement-validator';
 import { MovementPage } from '../pages/movement/movement';
+import { AboutSitametPage } from '../pages/about-sitamet/about-sitamet';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,11 +24,13 @@ import { MovementPage } from '../pages/movement/movement';
     AccountPage,
     SettingsPage,
     AddMovementPage,
-    MovementPage
+    MovementPage,
+    AboutSitametPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp), HttpModule
+    HttpClientModule,
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -36,7 +39,8 @@ import { MovementPage } from '../pages/movement/movement';
     AccountPage,
     SettingsPage,
     AddMovementPage,
-    MovementPage
+    MovementPage,
+    AboutSitametPage
   ],
   providers: [
     StatusBar,

@@ -6,9 +6,18 @@ page-account {
 
 }
 
+.toolbar-title-md {
+    font-size: 1.6em;
+}
+
 .card-movement {
     padding: 0 .7em;
     box-shadow: none !important;
+}
+
+.item-content {
+    display: flex;
+    justify-content: space-between;
 }
 
 .card-movement ion-card-header {
@@ -17,11 +26,6 @@ page-account {
 
 .card-movements {
     padding: 0;
-}
-
-.data-movement {
-    display: flex;
-    justify-content: space-between;
 }
 
 .data-movement > .movement-value {
@@ -35,7 +39,7 @@ page-account {
 }
 
 .data-movement > .data-header {
-    font-size: 1em;
+    font-size: 1.1em;
     font-weight: 500;
 }
 

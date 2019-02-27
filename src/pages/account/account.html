@@ -6,20 +6,20 @@
 
   <ion-toolbar>
     <ion-segment class="segment" [(ngModel)]="movementsSwitch" color="dark">
-      <ion-segment-button class="button-segment" value="all">
+      <ion-segment-button class="button-segment" value="0">
         All
       </ion-segment-button>
-      <ion-segment-button class="button-segment" value="expenses">
+      <ion-segment-button class="button-segment" value="1">
         Expenses
       </ion-segment-button>
-      <ion-segment-button class="button-segment" value="deposits">
+      <ion-segment-button class="button-segment" value="2">
         Deposits
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 
   <ion-card class="card-balance" no-padding>
-    <ion-card-header class="balance">{{balance}}</ion-card-header>
+    <ion-card-header class="balance">{{ balance }}</ion-card-header>
     <ion-card-content class="subtitle">Balance</ion-card-content>
   </ion-card>
 
@@ -29,19 +29,20 @@
 
   <div [ngSwitch]="movementsSwitch">
 
-    <ion-list *ngSwitchCase="'all'">
+    <ion-list *ngSwitchCase="'0'">
       <p class="subtitle" *ngIf="movements.length == 0">No movements</p>
 
       <ion-item-sliding *ngFor="let movement of movements">
         <ion-item class="card-movement" (click)="showMovement(movement)">
-          <div no-padding class="data-movement">
-            <p class="data-header movement-concept">{{movement._concept}}</p>
-            <p *ngIf="movement.isPositive" class="data-header value-positive">{{movement._valueFormatted}}</p>
-            <p *ngIf="!movement.isPositive" class="data-header value-negative">{{movement._valueFormatted}}</p>
-          </div>
-          <div no-padding class="data-movement">
-            <p class="data-content">{{movement._date}}</p>
-            <p class="data-content">{{movement._associateBalance}}</p>
+          <div class="item-content">
+            <div no-padding class="data-movement">
+              <p class="data-header movement-concept">{{ movement.concept }}</p>
+              <p class="data-content">{{ movement.date }}</p>
+            </div>
+            <div no-padding class="data-movement">
+              <p *ngIf="movement.isPositive" class=" data-header value-positive">{{ movement.valueFormatted }}</p>
+              <p *ngIf="!movement.isPositive" class="data-header value-negative">{{ movement.valueFormatted }}</p>
+            </div>
           </div>
         </ion-item>
 
@@ -55,19 +56,20 @@
 
     </ion-list>
 
-    <ion-list *ngSwitchCase="'expenses'">
+    <ion-list *ngSwitchCase="'1'">
       <p class="subtitle" *ngIf="expenses.length == 0">No expenses</p>
 
       <ion-item-sliding *ngFor="let movement of expenses">
         <ion-item class="card-movement" (click)="showMovement(movement)">
-          <div no-padding class="data-movement">
-            <p class="data-header movement-concept">{{movement._concept}}</p>
-            <p *ngIf="movement.isPositive" class="data-header value-positive">{{movement._valueFormatted}}</p>
-            <p *ngIf="!movement.isPositive" class="data-header value-negative">{{movement._valueFormatted}}</p>
-          </div>
-          <div no-padding class="data-movement">
-            <p class="data-content">{{movement._date}}</p>
-            <p class="data-content">{{movement._associateBalance}}</p>
+          <div class="item-content">
+            <div no-padding class="data-movement">
+              <p class="data-header movement-concept">{{ movement.concept }}</p>
+              <p class="data-content">{{ movement.date }}</p>
+            </div>
+            <div no-padding class="data-movement">
+              <p *ngIf="movement.isPositive" class=" data-header value-positive">{{ movement.valueFormatted }}</p>
+              <p *ngIf="!movement.isPositive" class="data-header value-negative">{{ movement.valueFormatted }}</p>
+            </div>
           </div>
         </ion-item>
 
@@ -80,19 +82,20 @@
       </ion-item-sliding>
     </ion-list>
 
-    <ion-list *ngSwitchCase="'deposits'">
+    <ion-list *ngSwitchCase="'2'">
       <p class="subtitle" *ngIf="deposits.length == 0">No deposits</p>
 
       <ion-item-sliding *ngFor="let movement of deposits">
         <ion-item class="card-movement" (click)="showMovement(movement)">
-          <div no-padding class="data-movement">
-            <p class="data-header movement-concept">{{movement._concept}}</p>
-            <p *ngIf="movement.isPositive" class=" data-header value-positive">{{movement._valueFormatted}}</p>
-            <p *ngIf="!movement.isPositive" class="data-header value-negative">{{movement._valueFormatted}}</p>
-          </div>
-          <div no-padding class="data-movement">
-            <p class="data-content">{{movement._date}}</p>
-            <p class="data-content">{{movement._associateBalance}}</p>
+          <div class="item-content">
+            <div no-padding class="data-movement">
+              <p class="data-header movement-concept">{{ movement.concept }}</p>
+              <p class="data-content">{{ movement.date }}</p>
+            </div>
+            <div no-padding class="data-movement">
+              <p *ngIf="movement.isPositive" class=" data-header value-positive">{{ movement.valueFormatted }}</p>
+              <p *ngIf="!movement.isPositive" class="data-header value-negative">{{ movement.valueFormatted }}</p>
+            </div>
           </div>
         </ion-item>
 
@@ -108,7 +111,7 @@
   </div>
 
   <ion-fab class="add-button" right bottom (click)="addMovement()">
-    <button ion-fab color="tertiary">
+    <button ion-fab color="primary">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>

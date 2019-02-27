@@ -29,21 +29,9 @@ export class AddMovementPage {
   }
 
   private async saveMovement(itemName: string, movements: Array<Movement>) {
-    let balance = Number(this.value) + Number(this.getBalance(movements));
-
-    movements.unshift(new Movement(this.concept, this.value, balance));
+    movements.unshift(new Movement(this.concept, this.value));
 
     await this.storage.setItem(itemName, movements);
-  }
-
-  private getBalance(movements: Array<Movement>): number {
-    let balance = 0;
-
-    movements.forEach((m: Movement) => {
-      balance += Number(m._value);
-    })
-
-    return balance;
   }
 
   private async showAlert() {

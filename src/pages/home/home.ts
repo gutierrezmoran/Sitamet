@@ -5,6 +5,7 @@ import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/na
 import { Page } from 'ionic-angular/umd/navigation/nav-util';
 import { AccountPage } from '../account/account';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { DateTimeFormatter } from '../../core/model/DateTimeFormatter';
 
 @Component({
   selector: 'page-home',
@@ -13,6 +14,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 export class HomePage {
 
   private fingerprintOptions: FingerprintOptions;
+  currentDateTime: String;
 
   constructor(private fingerprint: FingerprintAIO, private platform: Platform, private navCtrl: NavController, private nativePageTransitions: NativePageTransitions, private storage: NativeStorage) {
     this.fingerprintOptions = {
@@ -21,6 +23,7 @@ export class HomePage {
       disableBackup: true
     }
     this.setFingerprintConfiguration();
+    this.currentDateTime = DateTimeFormatter.shortDateTime();
   }
 
   async readFingerprint() {

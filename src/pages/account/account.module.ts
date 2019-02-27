@@ -7,7 +7,7 @@ import { AccountPage } from './account';
     AccountPage,
   ],
   imports: [
-    IonicPageModule.forChild(AccountPage),
+    IonicPageModule.forChild(AccountPage)
   ],
 })
 export class AccountPageModule {}

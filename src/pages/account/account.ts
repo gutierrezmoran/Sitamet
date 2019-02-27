@@ -14,14 +14,18 @@ import { MovementPage } from '../movement/movement';
 export class AccountPage {
 
   movementsSwitch: String;
-  movements: Array<Movement> = new Array<Movement>();
-  expenses: Array<Movement> = new Array<Movement>();
-  deposits: Array<Movement> = new Array<Movement>();
-  balance: String = NumberFormatter.pointsAndCommas(0);
+  movements: Array<Movement>;
+  expenses: Array<Movement>;
+  deposits: Array<Movement>;
+  balance: String;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: NativeStorage, private modalCtrl: ModalController) {
+    this.movements = new Array<Movement>();
+    this.expenses = Array<Movement>();
+    this.deposits = Array<Movement>();
     this.navCtrl.removeView(this.navCtrl.getPrevious());
-    this.movementsSwitch = "all";
+    this.balance = NumberFormatter.pointsAndCommas(0);
+    this.movementsSwitch = "0";
   }
 
   async ionViewWillEnter() {
@@ -29,11 +33,8 @@ export class AccountPage {
   }
 
   async getMovements() {
-    await this.storage.getItem("movements").then((data: Array<Movement>) => {
-      this.movements = data;
-    }).catch((e) => {
-      this.movements = new Array<Movement>();
-    });
+    await this.storage.getItem("movements").then((data: Array<Movement>) => this.movements = data)
+      .catch(() => this.movements = new Array<Movement>());
   }
 
   getExpenses() {
@@ -49,18 +50,12 @@ export class AccountPage {
   }
 
   showMovement(movement: Movement) {
-    let profileModal = this.modalCtrl.create(MovementPage, movement);
-
-    profileModal.present();
+    this.modalCtrl.create(MovementPage, movement).present();
   }
 
-  private async getBalance() {
+  private calcBalance() {
     let balance = 0;
-
-    this.movements.forEach((m: Movement) => {
-      balance += Number(m._value);
-    })
-
+    this.movements.forEach((m: Movement) => balance += Number(m.value));
     this.balance = NumberFormatter.pointsAndCommas(balance);
   }
 
@@ -74,7 +69,7 @@ export class AccountPage {
     await this.getMovements();
     await this.getDeposits();
     await this.getExpenses();
-    await this.getBalance();
+    await this.calcBalance();
   }
 
 }

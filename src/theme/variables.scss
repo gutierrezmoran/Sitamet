@@ -34,11 +34,11 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #404040,
+  primary:    #4267B2,
   secondary:  #f4f4f4,
-  tertiary:   #4267B2,
+  dark:       #404040,
   danger:     #dc143c,
-  deposited:  #01a57c
+  positive:  #01a57c
 );
 
 
@@ -52,6 +52,8 @@ $colors: (
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
+
+$toolbar-md-title-text-color: #404040;
 
 // Alert
 $alert-md-max-width: 100%;

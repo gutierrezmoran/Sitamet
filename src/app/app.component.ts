@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { SettingsPage } from '../pages/settings/settings';
+import { AboutSitametPage } from '../pages/about-sitamet/about-sitamet';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,7 +22,8 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Settings', component: SettingsPage, icon: 'settings' }
+      { title: 'Settings', component: SettingsPage, icon: 'settings' },
+      { title: 'About Sitamet', component: AboutSitametPage, icon: 'information-circle' }
     ];
 
   }
@@ -30,6 +32,8 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+
+      this.statusBar.backgroundColorByHexString("#EEEEEE");
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });

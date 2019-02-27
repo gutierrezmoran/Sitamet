@@ -37,9 +37,8 @@ $colors: (
   primary:    #404040,
   secondary:  #f4f4f4,
   tertiary:   #4267B2,
-  danger:     #f53d3d,
-  deposited:  #01a57c,
-  spent:      #dc143c
+  danger:     #dc143c,
+  deposited:  #01a57c
 );
 
 
@@ -61,7 +60,6 @@ $alert-md-max-height: 600px;
 // Title alert
 $alert-md-title-font-size: 1.5em;
 $alert-md-head-text-align: center;
-//$alert-md-head-padding-bottom: 0;
 $alert-md-head-padding-top: 2em;
 
 // Buttons group
@@ -83,6 +81,8 @@ $alert-md-button-padding-start: 0;
 $alert-md-button-padding-end: 0;
 $alert-md-button-padding-button: $alert-md-button-padding-top; 
 $alert-md-button-margin-end: 0;
+$alert-md-button-margin-top: .5em;
+$alert-md-button-margin-bottom: .5em;
 
 
 // Inputs

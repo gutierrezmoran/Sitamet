@@ -7,6 +7,6 @@
 <ion-content padding>
   <h6 class="date">{{movement._date}}</h6>
   <h4 class="concept">{{movement._concept}}</h4>
-  <h2 *ngIf="movement.isPositive" class="value value-positive">{{movement._value}}</h2>
-  <h2 *ngIf="!movement.isPositive" class="value value-negative">{{movement._value}}</h2>
+  <h2 *ngIf="movement.isPositive" class="value value-positive">{{movement._valueFormatted}}</h2>
+  <h2 *ngIf="!movement.isPositive" class="value value-negative">{{movement._valueFormatted}}</h2>
 </ion-content>

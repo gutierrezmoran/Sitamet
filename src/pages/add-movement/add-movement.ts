@@ -18,8 +18,6 @@ export class AddMovementPage {
   }
 
   async addMovement() {
-    await this.updateBalance();
-
     await this.storage.getItem("movements").then((data: Array<Movement>) => {
       this.saveMovement("movements", data);
     }).catch(() => {
@@ -31,23 +29,21 @@ export class AddMovementPage {
   }
 
   private async saveMovement(itemName: string, movements: Array<Movement>) {
-    let balance;
-    
-    await this.storage.getItem("balance").then(data => balance = data);
+    let balance = Number(this.value) + Number(this.getBalance(movements));
 
     movements.unshift(new Movement(this.concept, this.value, balance));
 
     await this.storage.setItem(itemName, movements);
   }
 
-  private async updateBalance() {
-    await this.storage.getItem("balance").then((data: number) => {
-      let balance: number = Number(data) + Number(this.value);
+  private getBalance(movements: Array<Movement>): number {
+    let balance = 0;
 
-      this.storage.setItem("balance", balance);
-    }).catch(() => {
-      this.storage.setItem("balance", this.value);
+    movements.forEach((m: Movement) => {
+      balance += Number(m._value);
     })
+
+    return balance;
   }
 
   private async showAlert() {

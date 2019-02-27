@@ -24,8 +24,8 @@ export class AccountPage {
     this.movementsSwitch = "all";
   }
 
-  ionViewWillEnter() {
-    this.updateData();
+  async ionViewWillEnter() {
+    await this.updateData();
   }
 
   async getMovements() {
@@ -44,16 +44,6 @@ export class AccountPage {
     this.deposits = this.movements.filter(movement => movement.isPositive);
   }
 
-  async getBalance() {
-    await this.storage.getItem("balance").then((data: number) => {
-      let formatedBalance = NumberFormatter.pointsAndCommas(data);
-
-      this.balance = formatedBalance;
-    }).catch((e) => {
-      this.balance = NumberFormatter.pointsAndCommas(0);
-    });
-  }
-
   addMovement() {
     this.navCtrl.push(AddMovementPage);
   }
@@ -62,6 +52,22 @@ export class AccountPage {
     let profileModal = this.modalCtrl.create(MovementPage, movement);
 
     profileModal.present();
+  }
+
+  private async getBalance() {
+    let balance = 0;
+
+    this.movements.forEach((m: Movement) => {
+      balance += Number(m._value);
+    })
+
+    this.balance = NumberFormatter.pointsAndCommas(balance);
+  }
+
+  async removeMovement(movement: Movement) {
+    this.movements.splice(this.movements.indexOf(movement), 1);
+    await this.storage.setItem("movements", this.movements);
+    await this.updateData();
   }
 
   private async updateData() {

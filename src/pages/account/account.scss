@@ -1,23 +1,25 @@
 page-account {
 
-    ion-content {
-        background-color: #eeeeee;
-    }
-
 }
 
 .toolbar-title-md {
-    font-size: 1.6em;
+    font-size: 1.5em;
 }
 
 .card-movement {
-    padding: 0 .7em;
     box-shadow: none !important;
+    padding: 0;
+}
+
+.data-movement {
+    display: flex;
+    align-items: center;
 }
 
 .item-content {
     display: flex;
     justify-content: space-between;
+    margin: 0 .9em;
 }
 
 .card-movement ion-card-header {
@@ -33,14 +35,21 @@ page-account {
     font-weight: bold;
 }
 
+.data-movement > ion-icon {
+    margin: 0 0 0 .8em;
+    font-size: 1.5em;
+    color: #cccccc;
+}
+
 .data-movement > .movement-date {
     display: flex;
     align-items: center;
 }
 
 .data-movement > .data-header {
-    font-size: 1.1em;
+    font-size: 1.05em;
     font-weight: 500;
+    margin: 0;
 }
 
 .data-movement > .value-positive {
@@ -51,10 +60,12 @@ page-account {
     color: crimson;
 }
 
-.data-movement > .movement-concept {
+.movement-concept {
     margin-right: 1em;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight: bold;
+    font-size: 1.4em;
 }
 
 .data-movement > .data-content {
@@ -76,8 +87,10 @@ page-account {
 }
 
 .card-balance {
+    -webkit-box-shadow: none;
+    box-shadow: none;
     background-color: #f8f8f8;
-    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+    border: 1px solid #eee;
 }
 
 .header-card-movement {

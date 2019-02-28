@@ -25,7 +25,7 @@
 
 </ion-header>
 
-<ion-content>
+<ion-content class="content">
 
   <div [ngSwitch]="movementsSwitch">
 
@@ -35,13 +35,14 @@
       <ion-item-sliding *ngFor="let movement of movements">
         <ion-item class="card-movement" (click)="showMovement(movement)">
           <div class="item-content">
-            <div no-padding class="data-movement">
+            <div no-padding>
               <p class="data-header movement-concept">{{ movement.concept }}</p>
               <p class="data-content">{{ movement.date }}</p>
             </div>
             <div no-padding class="data-movement">
-              <p *ngIf="movement.isPositive" class=" data-header value-positive">{{ movement.valueFormatted }}</p>
+              <p *ngIf="movement.isPositive" class="data-header value-positive">{{ movement.valueFormatted }}</p>
               <p *ngIf="!movement.isPositive" class="data-header value-negative">{{ movement.valueFormatted }}</p>
+              <ion-icon name="arrow-dropright"></ion-icon>
             </div>
           </div>
         </ion-item>
@@ -62,13 +63,13 @@
       <ion-item-sliding *ngFor="let movement of expenses">
         <ion-item class="card-movement" (click)="showMovement(movement)">
           <div class="item-content">
-            <div no-padding class="data-movement">
+            <div no-padding>
               <p class="data-header movement-concept">{{ movement.concept }}</p>
               <p class="data-content">{{ movement.date }}</p>
             </div>
             <div no-padding class="data-movement">
-              <p *ngIf="movement.isPositive" class=" data-header value-positive">{{ movement.valueFormatted }}</p>
               <p *ngIf="!movement.isPositive" class="data-header value-negative">{{ movement.valueFormatted }}</p>
+              <ion-icon name="arrow-dropright"></ion-icon>
             </div>
           </div>
         </ion-item>
@@ -88,13 +89,13 @@
       <ion-item-sliding *ngFor="let movement of deposits">
         <ion-item class="card-movement" (click)="showMovement(movement)">
           <div class="item-content">
-            <div no-padding class="data-movement">
+            <div no-padding>
               <p class="data-header movement-concept">{{ movement.concept }}</p>
               <p class="data-content">{{ movement.date }}</p>
             </div>
             <div no-padding class="data-movement">
               <p *ngIf="movement.isPositive" class=" data-header value-positive">{{ movement.valueFormatted }}</p>
-              <p *ngIf="!movement.isPositive" class="data-header value-negative">{{ movement.valueFormatted }}</p>
+              <ion-icon name="arrow-dropright"></ion-icon>
             </div>
           </div>
         </ion-item>

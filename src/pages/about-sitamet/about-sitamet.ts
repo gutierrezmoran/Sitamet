@@ -11,7 +11,4 @@ export class AboutSitametPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-  }
-
 }

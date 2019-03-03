@@ -5,6 +5,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { AddMovementPage } from '../add-movement/add-movement';
 import { NumberFormatter } from '../../core/model/NumberFormatter';
 import { MovementPage } from '../movement/movement';
+import { DateTimeFormatter } from '../../core/model/DateTimeFormatter';
 
 @IonicPage()
 @Component({
@@ -20,6 +21,7 @@ export class AccountPage {
   balance: String;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: NativeStorage, private modalCtrl: ModalController) {
+    this.storage.setItem("lastAccess", DateTimeFormatter.shortDateTime());
     this.movements = new Array<Movement>();
     this.expenses = Array<Movement>();
     this.deposits = Array<Movement>();

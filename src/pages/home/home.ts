@@ -23,7 +23,7 @@ export class HomePage {
       disableBackup: true
     }
     this.setFingerprintConfiguration();
-    this.currentDateTime = DateTimeFormatter.shortDateTime();
+    this.setCurrentTime();
   }
 
   async readFingerprint() {
@@ -61,14 +61,22 @@ export class HomePage {
 
   async setFingerprintConfiguration() {
     await this.storage.getItem("fingerprintConfiguration").then((data: boolean) => {
-      console.log(data);
-      if(!data) {
+      if (!data) {
         this.login();
       }
     }).catch(() => {
       this.storage.setItem("fingerprintConfiguration", false);
       this.login();
     })
+  }
+
+  async setCurrentTime() {
+    await this.storage.getItem("lastAccess").then((datetime: string) => {
+      this.currentDateTime = datetime;
+    }).catch(() => {
+      this.storage.setItem("lastAccess", DateTimeFormatter.shortDateTime());
+      this.currentDateTime = DateTimeFormatter.shortDateTime()
+    });
   }
 
 }

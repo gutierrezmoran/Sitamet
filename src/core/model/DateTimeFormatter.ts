@@ -4,7 +4,7 @@ export class DateTimeFormatter {
 
     // 01/01/9999
     static shortDate(): string {
-        let options = { year: 'numeric', month: '2-digit', day: 'numeric' };
+        let options = { year: 'numeric', month: '2-digit', day: '2-digit' };
         return this.date.toLocaleDateString("es-ES", options);
     }
 

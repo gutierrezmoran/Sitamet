@@ -1,6 +1,6 @@
 <ion-header no-border>
   <img class="logo" src="../../assets/imgs/logo.png">
-  <p>Last access: {{ currentDateTime }}</p>
+  <p>{{ 'LAST_ACCESS' | translate }} {{ currentDateTime }}</p>
 </ion-header>
 
 <ion-content>
@@ -8,7 +8,7 @@
 
     <ion-item class="item-access" (click)="readFingerprint()">
       <ion-icon class="icon-left-item" name="finger-print" item-start></ion-icon>
-      Access fingerprint
+      {{ 'ACCESS_FINGERPRINT_AUTHENTICATION' | translate }}
     </ion-item>
 
   </ion-list>

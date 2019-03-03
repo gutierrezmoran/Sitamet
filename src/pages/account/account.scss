@@ -1,119 +1,132 @@
 page-account {
 
-}
+    ion-item-options {
+        padding: 0;
+    }
 
-.toolbar-title-md {
-    font-size: 1.5em;
-}
+    ion-item-options button {
+        padding: 0;
+    }
 
-.card-movement {
-    box-shadow: none !important;
-    padding: 0;
-}
+    ion-item-options button ion-icon {
+        font-size: 2.5em;
+        margin: 0 .6em;
+        padding-bottom: 0 !important;
+    }
 
-.data-movement {
-    display: flex;
-    align-items: center;
-}
+    .title {
+        font-family: 'Sitamet';
+        text-transform: uppercase;
+        letter-spacing: .2em;
+        font-size: 1.5em;
+    }
 
-.item-content {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 .9em;
-}
+    .card-movement {
+        box-shadow: none !important;
+        padding: 0;
+    }
+    
+    .data-movement {
+        display: flex;
+        align-items: center;
+    }
+    
+    .item-content {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 .9em;
+    }
+    
+    .card-movement ion-card-header {
+        text-overflow: ellipsis;
+    }
+    
+    .card-movements {
+        padding: 0;
+    }
+    
+    .data-movement > .movement-value {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    
+    .data-movement > ion-icon {
+        margin: 0 0 0 .8em;
+        font-size: 1.5em;
+        color: #cccccc;
+    }
+    
+    .data-movement > .movement-date {
+        display: flex;
+        align-items: center;
+    }
+    
+    .data-movement > .data-header {
+        font-size: 1.05em;
+        font-weight: 500;
+        margin: 0;
+    }
+    
+    .data-movement > .value-positive {
+        color: #01a57c;
+    }
+    
+    .data-movement > .value-negative {
+        color: crimson;
+    }
+    
+    .movement-concept {
+        margin-right: 1em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: bold;
+        font-size: 1.05em;
+    }
+    
+    .data-movement > .data-content {
+        color: #999999;
+    }
+    
+    .subtitle {
+        text-align: center;
+        padding: 0 0 .3em 0;
+        color: #555555;
+    }
+    
+    .balance {
+        font-family: 'Roboto';
+        font-size: 2em;
+        text-align: center;
+        padding: .3em 0 0 0;
+        margin: 0;
+    }
+    
+    .card-balance {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        background-color: #f8f8f8;
+        border: 1px solid #eee;
+    }
+    
+    .header-card-movement {
+        text-align: center;
+        font-weight: bold;
+    }
+    
+    .button-segment {
+        font-weight: bold;
+    }
+    
+    .segment {
+        font-weight: bold;
+    }
+    
+    .label-md {
+        margin-right: 0;
+    }
+    
+    .item-md.item-block .item-inner {
+        padding-right: 0;
+    }
 
-.card-movement ion-card-header {
-    text-overflow: ellipsis;
-}
-
-.card-movements {
-    padding: 0;
-}
-
-.data-movement > .movement-value {
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-.data-movement > ion-icon {
-    margin: 0 0 0 .8em;
-    font-size: 1.5em;
-    color: #cccccc;
-}
-
-.data-movement > .movement-date {
-    display: flex;
-    align-items: center;
-}
-
-.data-movement > .data-header {
-    font-size: 1.05em;
-    font-weight: 500;
-    margin: 0;
-}
-
-.data-movement > .value-positive {
-    color: #01a57c;
-}
-
-.data-movement > .value-negative {
-    color: crimson;
-}
-
-.movement-concept {
-    margin-right: 1em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-weight: bold;
-    font-size: 1.4em;
-}
-
-.data-movement > .data-content {
-    color: #999999;
-}
-
-.subtitle {
-    text-align: center;
-    padding: 0 0 .3em 0;
-    color: #555555;
-}
-
-.balance {
-    font-family: 'Roboto';
-    font-size: 2em;
-    text-align: center;
-    padding: .3em 0 0 0;
-    margin: 0;
-}
-
-.card-balance {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    background-color: #f8f8f8;
-    border: 1px solid #eee;
-}
-
-.header-card-movement {
-    text-align: center;
-    font-weight: bold;
-}
-
-.button-segment {
-    font-weight: bold;
-}
-
-.segment {
-    font-weight: bold;
-}
-
-.add-button {
-    margin: .8em;
-}
-
-.label-md {
-    margin-right: 0;
-}
-
-.item-md.item-block .item-inner {
-    padding-right: 0;
 }

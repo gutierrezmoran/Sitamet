@@ -4,6 +4,9 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
@@ -15,7 +18,12 @@ import { SettingsPage } from '../pages/settings/settings';
 import { MovementValidatorProvider } from '../providers/movement-validator/movement-validator';
 import { MovementPage } from '../pages/movement/movement';
 import { AboutSitametPage } from '../pages/about-sitamet/about-sitamet';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { LanguagePage } from '../pages/language/language';
+
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient, "../assets/i18n/", ".json");
+}
 
 @NgModule({
   declarations: [
@@ -25,12 +33,20 @@ import { HttpClientModule } from '@angular/common/http';
     SettingsPage,
     AddMovementPage,
     MovementPage,
-    AboutSitametPage
+    AboutSitametPage,
+    LanguagePage
   ],
   imports: [
     BrowserModule,
+    IonicModule.forRoot(MyApp),
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -40,7 +56,8 @@ import { HttpClientModule } from '@angular/common/http';
     SettingsPage,
     AddMovementPage,
     MovementPage,
-    AboutSitametPage
+    AboutSitametPage,
+    LanguagePage
   ],
   providers: [
     StatusBar,

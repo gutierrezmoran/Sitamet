@@ -7,6 +7,9 @@ import { HomePage } from '../pages/home/home';
 import { SettingsPage } from '../pages/settings/settings';
 import { AboutSitametPage } from '../pages/about-sitamet/about-sitamet';
 
+import { TranslateService } from '@ngx-translate/core';
+import { NativeStorage } from '@ionic-native/native-storage';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -17,32 +20,39 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any, icon: string }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  showSplash: boolean = true;
+
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private translateService: TranslateService, private storage:NativeStorage) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Settings', component: SettingsPage, icon: 'settings' },
-      { title: 'About Sitamet', component: AboutSitametPage, icon: 'information-circle' }
+      { title: "SETTINGS", component: SettingsPage, icon: 'settings' },
+      { title: "ABOUT_SITAMET", component: AboutSitametPage, icon: 'information-circle' }
     ];
-
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      
+      this.storage.getItem('lenguage').then((lenguage: string) => {
+        this.changeLenguage(lenguage);
+      }).catch(() => {
+        this.changeLenguage('en');
+      })
 
-      this.statusBar.backgroundColorByHexString("#EEEEEE");
+      this.statusBar.backgroundColorByHexString('#EEEEEE');
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
     this.nav.push(page.component);
+  }
+
+  changeLenguage(lenguage: string) {
+    this.translateService.setDefaultLang(lenguage);
+    this.translateService.use(lenguage);
   }
 
 }

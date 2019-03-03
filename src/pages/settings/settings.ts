@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguagePage } from '../language/language';
 
 @IonicPage()
 @Component({
@@ -11,7 +13,7 @@ export class SettingsPage {
 
   fingerprint: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: NativeStorage, private toastCtrl: ToastController, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: NativeStorage, private toastCtrl: ToastController, private alertCtrl: AlertController, private translate: TranslateService) {
     this.loadConfiguration();
   }
 
@@ -29,7 +31,7 @@ export class SettingsPage {
     await this.storage.clear();
 
     const toast = this.toastCtrl.create({
-      message: 'Application data cleaned successfully',
+      message: this.translate.instant("DELETE_STORAGE_MESSAGE_SUCCESS"),
       duration: 3000
     });
     toast.present();
@@ -37,14 +39,14 @@ export class SettingsPage {
 
   async showAlert() {
     const confirm = this.alertCtrl.create({
-      title: "Clear application data",
-      message: "You are sure you want to clean the application data?, the data and the settings will be deleted.",
+      title: this.translate.instant("DELETE_STORAGE"),
+      message: this.translate.instant("DELETE_STORAGE_MESSAGE"),
       buttons: [
         {
-          text: 'No'
+          text: this.translate.instant("NO")
         },
         {
-          text: 'Yes',
+          text: this.translate.instant("YES"),
           handler: () => {
             this.clearApplicationData();
           }
@@ -52,6 +54,10 @@ export class SettingsPage {
       ]
     });
     confirm.present();
+  }
+
+  openLanguagePage() {
+    this.navCtrl.push(LanguagePage);
   }
 
 }

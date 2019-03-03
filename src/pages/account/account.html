@@ -7,20 +7,20 @@
   <ion-toolbar>
     <ion-segment class="segment" [(ngModel)]="movementsSwitch" color="dark">
       <ion-segment-button class="button-segment" value="0">
-        All
+        {{ 'ALL' | translate }}
       </ion-segment-button>
       <ion-segment-button class="button-segment" value="1">
-        Expenses
+        {{ 'EXPENSES' | translate }}
       </ion-segment-button>
       <ion-segment-button class="button-segment" value="2">
-        Deposits
+        {{ 'DEPOSITS' | translate }}
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 
   <ion-card class="card-balance" no-padding>
     <ion-card-header class="balance">{{ balance }}</ion-card-header>
-    <ion-card-content class="subtitle">Balance</ion-card-content>
+    <ion-card-content class="subtitle">{{ 'BALANCE' | translate }}</ion-card-content>
   </ion-card>
 
 </ion-header>
@@ -30,7 +30,7 @@
   <div [ngSwitch]="movementsSwitch">
 
     <ion-list *ngSwitchCase="'0'">
-      <p class="subtitle" *ngIf="movements.length == 0">No movements</p>
+      <p class="subtitle" *ngIf="movements.length == 0">{{ 'NO_MOVEMENTS' | translate }}</p>
 
       <ion-item-sliding *ngFor="let movement of movements">
         <ion-item class="card-movement" (click)="showMovement(movement)">
@@ -42,15 +42,14 @@
             <div no-padding class="data-movement">
               <p *ngIf="movement.isPositive" class="data-header value-positive">{{ movement.valueFormatted }}</p>
               <p *ngIf="!movement.isPositive" class="data-header value-negative">{{ movement.valueFormatted }}</p>
-              <ion-icon name="arrow-dropright"></ion-icon>
+              <ion-icon name="arrow-dropleft"></ion-icon>
             </div>
           </div>
         </ion-item>
 
         <ion-item-options side="right">
-          <button ion-button color="danger" (click)="removeMovement(movement)">
+          <button class="button-delete" ion-button color="danger" (click)="removeMovement(movement)">
             <ion-icon name="trash"></ion-icon>
-            Delete
           </button>
         </ion-item-options>
       </ion-item-sliding>
@@ -58,7 +57,7 @@
     </ion-list>
 
     <ion-list *ngSwitchCase="'1'">
-      <p class="subtitle" *ngIf="expenses.length == 0">No expenses</p>
+      <p class="subtitle" *ngIf="expenses.length == 0">{{ 'NO_EXPENSES' | translate }}</p>
 
       <ion-item-sliding *ngFor="let movement of expenses">
         <ion-item class="card-movement" (click)="showMovement(movement)">
@@ -69,22 +68,21 @@
             </div>
             <div no-padding class="data-movement">
               <p *ngIf="!movement.isPositive" class="data-header value-negative">{{ movement.valueFormatted }}</p>
-              <ion-icon name="arrow-dropright"></ion-icon>
+              <ion-icon name="arrow-dropleft"></ion-icon>
             </div>
           </div>
         </ion-item>
 
         <ion-item-options side="right">
-          <button ion-button color="danger" (click)="removeMovement(movement)">
+          <button class="button-delete" ion-button color="danger" (click)="removeMovement(movement)">
             <ion-icon name="trash"></ion-icon>
-            Delete
           </button>
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>
 
     <ion-list *ngSwitchCase="'2'">
-      <p class="subtitle" *ngIf="deposits.length == 0">No deposits</p>
+      <p class="subtitle" *ngIf="deposits.length == 0">{{ 'NO_DEPOSITS' | translate }}</p>
 
       <ion-item-sliding *ngFor="let movement of deposits">
         <ion-item class="card-movement" (click)="showMovement(movement)">
@@ -95,15 +93,14 @@
             </div>
             <div no-padding class="data-movement">
               <p *ngIf="movement.isPositive" class=" data-header value-positive">{{ movement.valueFormatted }}</p>
-              <ion-icon name="arrow-dropright"></ion-icon>
+              <ion-icon no-padding name="arrow-dropleft"></ion-icon>
             </div>
           </div>
         </ion-item>
 
         <ion-item-options side="right">
-          <button ion-button color="danger" (click)="removeMovement(movement)">
+          <button class="button-delete" ion-button color="danger" (click)="removeMovement(movement)">
             <ion-icon name="trash"></ion-icon>
-            Delete
           </button>
         </ion-item-options>
       </ion-item-sliding>

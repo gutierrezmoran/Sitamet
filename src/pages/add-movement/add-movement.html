@@ -1,6 +1,6 @@
 <ion-header no-border>
   <ion-navbar>
-    <ion-title>Add movement</ion-title>
+    <ion-title>{{ 'ADD_MOVEMENT' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -9,7 +9,7 @@
   <ion-list class="form-list">
 
     <ion-item class="form-item">
-      <ion-label floating>Concept</ion-label>
+      <ion-label floating>{{ 'CONCEPT' | translate }}</ion-label>
       <ion-input type="text" [(ngModel)]="concept" formControlName="concept"></ion-input>
     </ion-item>
     <ng-container *ngFor="let control of validator.messages.concept">
@@ -20,7 +20,7 @@
     </ng-container>
 
     <ion-item class="form-item">
-      <ion-label floating>Value</ion-label>
+      <ion-label floating>{{ 'VALUE' | translate }}</ion-label>
       <ion-input type="number" [(ngModel)]="value" formControlName="value"></ion-input>
     </ion-item>
     <ng-container *ngFor="let control of validator.messages.value">

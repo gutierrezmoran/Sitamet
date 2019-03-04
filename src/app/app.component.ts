@@ -20,8 +20,6 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any, icon: string }>;
 
-  showSplash: boolean = true;
-
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private translateService: TranslateService, private storage:NativeStorage) {
     this.initializeApp();
 

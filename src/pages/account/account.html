@@ -1,4 +1,5 @@
 <ion-header no-border>
+
   <ion-navbar hideBackButton>
     <ion-title class="title">Sitamet</ion-title>
     <ion-icon class="icon-menu" ion-button menuToggle end name="menu"></ion-icon>
@@ -25,7 +26,7 @@
 
 </ion-header>
 
-<ion-content class="content">
+<ion-content class="content" auto-hide-fab>
 
   <div [ngSwitch]="movementsSwitch">
 
@@ -108,7 +109,7 @@
 
   </div>
 
-  <ion-fab class="add-button" right bottom (click)="addMovement()">
+  <ion-fab #fab class="add-button" right bottom (click)="addMovement()">
     <button ion-fab color="primary">
       <ion-icon name="add"></ion-icon>
     </button>

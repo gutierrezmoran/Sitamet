@@ -23,7 +23,7 @@ export class HomePage {
       disableBackup: true
     }
     this.setFingerprintConfiguration();
-    this.setCurrentTime();
+    this.setCurrentDateTime();
   }
 
   async readFingerprint() {
@@ -42,11 +42,11 @@ export class HomePage {
 
   openPage(page: Page, data?: any) {
     let options: NativeTransitionOptions = {
-      duration: 300,
+      duration: 500,
       slowdownfactor: 3,
       slidePixels: 20,
-      iosdelay: 100,
-      androiddelay: 100,
+      iosdelay: 200,
+      androiddelay: 200,
       fixedPixelsTop: 0,
       fixedPixelsBottom: 60
     };
@@ -70,7 +70,7 @@ export class HomePage {
     })
   }
 
-  async setCurrentTime() {
+  async setCurrentDateTime() {
     await this.storage.getItem("lastAccess").then((datetime: string) => {
       this.currentDateTime = datetime;
     }).catch(() => {

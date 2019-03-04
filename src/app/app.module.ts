@@ -20,6 +20,7 @@ import { MovementPage } from '../pages/movement/movement';
 import { AboutSitametPage } from '../pages/about-sitamet/about-sitamet';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LanguagePage } from '../pages/language/language';
+import { AutoHideFabDirective } from '../directives/auto-hide-fab/auto-hide-fab';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, "../assets/i18n/", ".json");
@@ -34,7 +35,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AddMovementPage,
     MovementPage,
     AboutSitametPage,
-    LanguagePage
+    LanguagePage,
+    AutoHideFabDirective
   ],
   imports: [
     BrowserModule,

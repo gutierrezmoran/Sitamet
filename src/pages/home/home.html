@@ -1,15 +1,22 @@
-<ion-header no-border>
-  <img class="logo" src="../../assets/imgs/logo.png">
-  <p>{{ 'LAST_ACCESS' | translate }} {{ currentDateTime }}</p>
-</ion-header>
-
 <ion-content>
-  <ion-list class="list-access">
 
+  <ion-slides>
+    <ion-slide>
+      <img src="assets/imgs/SLIDE1.png">
+    </ion-slide>
+
+    <ion-slide>
+      <img src="assets/imgs/SLIDE2.png">
+    </ion-slide>
+  </ion-slides>
+
+</ion-content>
+
+<ion-footer>
+  <ion-list>
     <ion-item class="item-access" (click)="readFingerprint()">
       <ion-icon class="icon-left-item" name="finger-print" item-start></ion-icon>
       {{ 'ACCESS_FINGERPRINT_AUTHENTICATION' | translate }}
     </ion-item>
-
   </ion-list>
-</ion-content>
+</ion-footer>

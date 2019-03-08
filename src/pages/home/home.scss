@@ -1,42 +1,15 @@
 page-home {
 
-    ion-header {
-        text-align: center;
-        padding-top: 4em;
+    .scroll-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
-    ion-slides {
-        padding: 0 2em;
-
-        ion-slide {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 2em;
-        }
+    ion-icon {
+        font-size: 6em;
+        margin: .2em;
     }
 
-    .logo {
-        height: 18em;
-    }
-}
-
-.icon-left-item {
-    padding: 0 1em;
-    color: #404040;
-}
-
-.list-access {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    color: dark;
-}
-
-.item-access {
-    left: 0;
-    bottom: 0;
-    position: absolute;
-    width: 100%;
-    padding-bottom: .5em;
-    padding-top: .5em;
-    border-top: .5px solid #eeeeee;
 }

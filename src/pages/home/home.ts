@@ -63,6 +63,8 @@ export class HomePage {
     await this.storage.getItem("fingerprintConfiguration").then((data: boolean) => {
       if (!data) {
         this.login();
+      } else {
+        this.readFingerprint();
       }
     }).catch(() => {
       this.storage.setItem("fingerprintConfiguration", false);

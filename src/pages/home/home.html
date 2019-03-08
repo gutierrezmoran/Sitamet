@@ -1,22 +1,6 @@
 <ion-content>
 
-  <ion-slides>
-    <ion-slide>
-      <img src="assets/imgs/SLIDE1.png">
-    </ion-slide>
-
-    <ion-slide>
-      <img src="assets/imgs/SLIDE2.png">
-    </ion-slide>
-  </ion-slides>
+  <ion-icon name="finger-print" (click)="readFingerprint()"></ion-icon>
+  <label>{{ 'ACCESS_FINGERPRINT_AUTHENTICATION' | translate }}</label>
 
 </ion-content>
-
-<ion-footer>
-  <ion-list>
-    <ion-item class="item-access" (click)="readFingerprint()">
-      <ion-icon class="icon-left-item" name="finger-print" item-start></ion-icon>
-      {{ 'ACCESS_FINGERPRINT_AUTHENTICATION' | translate }}
-    </ion-item>
-  </ion-list>
-</ion-footer>

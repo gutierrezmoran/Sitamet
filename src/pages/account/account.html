@@ -18,17 +18,21 @@
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
-
+  
   <ion-card class="card-balance" no-padding>
     <ion-card-header class="balance">{{ balance }}</ion-card-header>
     <ion-card-content class="subtitle">{{ 'BALANCE' | translate }}</ion-card-content>
   </ion-card>
-
+  
 </ion-header>
 
 <ion-content class="content" auto-hide-fab>
-
+  
   <div [ngSwitch]="movementsSwitch">
+    
+    <ion-searchbar *ngSwitchCase="'0'" placeholder="{{ 'SEARCH_MOVEMENT' | translate }}" (ionInput)="filterMovements($event)"></ion-searchbar>
+    <ion-searchbar *ngSwitchCase="'1'" placeholder="{{ 'SEARCH_SPENT' | translate }}" (ionInput)="filterExpenses($event)"></ion-searchbar>
+    <ion-searchbar *ngSwitchCase="'2'" placeholder="{{ 'SEARCH_DEPOSIT' | translate }}" (ionInput)="filterDeposits($event)"></ion-searchbar>
 
     <ion-list *ngSwitchCase="'0'">
       <p class="subtitle" *ngIf="movements.length == 0">{{ 'NO_MOVEMENTS' | translate }}</p>

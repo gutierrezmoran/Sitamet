@@ -34,13 +34,50 @@ export class AccountPage {
     await this.updateData();
   }
 
+
+  async filterMovements(ev: any) {
+    await this.getMovements();
+
+    const value = ev.target.value;
+
+    if (value && value.trim() != '') {
+      this.movements = this.movements.filter((item: Movement) => {
+        return (item.concept.toLowerCase().indexOf(value.toLowerCase()) > -1);
+      })
+    }
+  }
+
   async getMovements() {
     await this.storage.getItem("movements").then((data: Array<Movement>) => this.movements = data)
       .catch(() => this.movements = new Array<Movement>());
   }
 
+  async filterExpenses(ev: any) {
+    this.getExpenses();
+
+    const value = ev.target.value;
+
+    if (value && value.trim() != '') {
+      this.expenses = this.expenses.filter((item: Movement) => {
+        return (item.concept.toLowerCase().indexOf(value.toLowerCase()) > -1);
+      })
+    }
+  }
+
   getExpenses() {
     this.expenses = this.movements.filter(movement => !movement.isPositive);
+  }
+
+  async filterDeposits(ev: any) {
+    this.getDeposits();
+
+    const value = ev.target.value;
+
+    if (value && value.trim() != '') {
+      this.deposits = this.deposits.filter((item: Movement) => {
+        return (item.concept.toLowerCase().indexOf(value.toLowerCase()) > -1);
+      })
+    }
   }
 
   getDeposits() {
